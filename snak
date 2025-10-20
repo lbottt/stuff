@@ -90,7 +90,7 @@ q.Font = Enum.Font.Gotham
 local r = Instance.new("UICorner")
 r.CornerRadius = UDim.new(0, 6)
 r.Parent = p
-local = Instance.new("UICorner")
+local s = Instance.new("UICorner")
 s.CornerRadius = UDim.new(0, 6)
 s.Parent = q
 local t = Instance.new("TextButton")
@@ -170,17 +170,20 @@ local N = "right"
 local O = nil
 local P = {}
 local Q = "normal"
+
 local R = {
     ["ez"] = {speed = 0.15, obstacles = 3},
     ["normal"] = {speed = 0.1, obstacles = 6}, 
     ["hard brrr"] = {speed = 0.06, obstacles = 10},
     ["∑"] = {speed = 0.04, obstacles = 15}
 }
+
 local S = Color3.new(0.2, 0.8, 0.2)
 local T = Color3.new(0.3, 0.9, 0.3)
 local U = Color3.new(1, 0.2, 0.2)
 local V = Color3.new(0.4, 0.4, 0.6)
 local W = Color3.new(0.08, 0.08, 0.08)
+
 local X = {}
 for Y = 1, H do
     X[Y] = {}
@@ -195,6 +198,7 @@ for Y = 1, H do
         X[Y][Z] = a0
     end
 end
+
 local function a1()
     m.Text = "score " .. K
     
@@ -224,6 +228,7 @@ local function a1()
         X[O.x][O.y].BackgroundColor3 = U
     end
 end
+
 local function a8()
     P = {}
     local a9 = R[Q].obstacles
@@ -262,6 +267,7 @@ local function a8()
         table.insert(P, ab)
     end
 end
+
 local function ah()
     local ai = false
     local aj
@@ -291,6 +297,7 @@ local function ah()
     
     O = aj
 end
+
 local function ao(ap)
     if ap.x < 1 or ap.x > H or ap.y < 1 or ap.y > I then
         return true
@@ -310,6 +317,7 @@ local function ao(ap)
     
     return false
 end
+
 local function at()
     M = N
     
@@ -341,6 +349,7 @@ local function at()
         table.remove(L)
     end
 end
+
 local function av()
     J = true
     v.Visible = false
@@ -359,6 +368,7 @@ local function av()
     ah()
     a1()
 end
+
 f.InputBegan:Connect(function(aw)
     if not J then return end
     
@@ -380,6 +390,7 @@ f.InputBegan:Connect(function(aw)
         end
     end
 end)
+
 local ax = tick()
 d.Heartbeat:Connect(function()
     if not J then return end
@@ -393,6 +404,7 @@ d.Heartbeat:Connect(function()
         ax = ay
     end
 end)
+
 p.MouseButton1Click:Connect(function()
     local aA = {"ez", "normal", "hard brrr", "∑"}
     local aB
@@ -412,6 +424,7 @@ p.MouseButton1Click:Connect(function()
         a1()
     end
 end)
+
 t.MouseButton1Click:Connect(function()
     av()
 end)

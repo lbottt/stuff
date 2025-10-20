@@ -1,0 +1,427 @@
+local a = game:GetService("Players")
+local b = a.LocalPlayer
+local c = b:WaitForChild("PlayerGui")
+local d = game:GetService("RunService")
+local e = game:GetService("TweenService")
+local f = game:GetService("UserInputService")
+local g = Instance.new("ScreenGui")
+g.Name = "snak"
+g.ResetOnSpawn = false
+g.ZIndexBehavior = Enum.ZIndexBehavior.Global
+local h = Instance.new("Frame")
+h.Size = UDim2.new(0, 500, 0, 600)
+h.Position = UDim2.new(0, 750, 0, 330)
+h.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+h.BorderSizePixel = 0
+h.AnchorPoint = Vector2.new(0.5, 0.5)
+h.Parent = g
+local i = Instance.new("UICorner")
+i.CornerRadius = UDim.new(0, 12)
+i.Parent = h
+local j = Instance.new("TextLabel")
+j.Size = UDim2.new(1, 0, 0, 50)
+j.Position = UDim2.new(0, 0, 0, 0)
+j.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+j.Text = "snak"
+j.TextColor3 = Color3.new(1, 1, 1)
+j.TextSize = 24
+j.Font = Enum.Font.GothamBold
+j.ZIndex = 10
+j.Parent = h
+local k = Instance.new("UICorner")
+k.CornerRadius = UDim.new(0, 12)
+k.Parent = j
+local l = Instance.new("Frame")
+l.Size = UDim2.new(0, 400, 0, 400)
+l.Position = UDim2.new(0,250, 0, 60)
+l.BackgroundColor3 = Color3.new(0.05, 0.05, 0.05)
+l.BorderSizePixel = 1
+l.BorderColor3 = Color3.new(0.3, 0.3, 0.3)
+l.AnchorPoint = Vector2.new(0.5, 0)
+l.ZIndex = 5
+l.Parent = h
+local m = Instance.new("TextLabel")
+m.Size = UDim2.new(0, 0, 0, 50)
+m.Position = UDim2.new(0, 250, 0, 55)
+m.BackgroundTransparency = 1
+m.Text = "Score: 0"
+m.TextColor3 = Color3.new(1, 1, 1)
+m.TextSize = 18
+m.Font = Enum.Font.Gotham
+m.AnchorPoint = Vector2.new(0.5, 0)
+m.ZIndex = 10
+m.Parent = h
+local n = Instance.new("Frame")
+n.Size = UDim2.new(0, 1, 0, 1)
+n.Position = UDim2.new(0, 200, 0, 480)
+n.BackgroundTransparency = 1
+n.AnchorPoint = Vector2.new(0.5, 0)
+n.ZIndex = 10
+n.Parent = h
+local o = Instance.new("TextLabel")
+o.Size = UDim2.new(0, 0, 0, 0)
+o.Position = UDim2.new(0, 0, 0, 1)
+o.BackgroundTransparency = 1
+o.Text = "Difficulty"
+o.TextColor3 = Color3.new(1, 1, 1)
+o.TextSize = 16
+o.TextXAlignment = Enum.TextXAlignment.Left
+o.ZIndex = 10
+o.Parent = n
+local p = Instance.new("TextButton")
+p.Size = UDim2.new(0, 120, 0, 30)
+p.Position = UDim2.new(0, -20, 0, 15)
+p.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
+p.Text = "normal"
+p.TextColor3 = Color3.new(1, 1, 1)
+p.TextSize = 16
+p.ZIndex = 10
+p.Parent = n
+local q = Instance.new("TextButton")
+q.Size = UDim2.new(0, 30, 0, 30)
+q.Position = UDim2.new(0, 467, 0, 2)
+q.BackgroundColor3 = Color3.new(1, 0, 0)
+q.Text = "X"
+q.TextColor3 = Color3.new(1, 1, 1)
+q.TextScaled = true
+q.ZIndex = 10
+q.Parent = h
+q.Font = Enum.Font.Gotham
+local r = Instance.new("UICorner")
+r.CornerRadius = UDim.new(0, 6)
+r.Parent = p
+local = Instance.new("UICorner")
+s.CornerRadius = UDim.new(0, 6)
+s.Parent = q
+local t = Instance.new("TextButton")
+t.Size = UDim2.new(0, 150, 0, 50)
+t.Position = UDim2.new(0, -35, 0, 55)
+t.BackgroundColor3 = Color3.new(0.2, 0.6, 0.2)
+t.Text = "RESTART"
+t.TextColor3 = Color3.new(1, 1, 1)
+t.TextSize = 18
+t.Font = Enum.Font.GothamBold
+t.ZIndex = 10
+t.Parent = n
+local u = Instance.new("UICorner")
+u.CornerRadius = UDim.new(0, 8)
+u.Parent = t
+local v = Instance.new("TextLabel")
+v.Size = UDim2.new(1, 0, 1, 0)
+v.Position = UDim2.new(0, 0, 0, 0)
+v.BackgroundColor3 = Color3.new(0, 0, 0)
+v.BackgroundTransparency = 0.3
+v.Text = "GAME OVER!\nFinal Score: 0"
+v.TextColor3 = Color3.new(1, 0.3, 0.3)
+v.TextSize = 24
+v.Font = Enum.Font.GothamBold
+v.Visible = false
+v.TextWrapped = true
+v.ZIndex = 20
+v.Parent = l
+local function w(x, y)
+    local z = false
+    local A
+    local B
+    local C
+    
+    local function D(E)
+        local F = E.Position - B
+        x.Position = UDim2.new(C.X.Scale, C.X.Offset + F.X, C.Y.Scale, C.Y.Offset + F.Y)
+    end
+    
+    y.InputBegan:Connect(function(E)
+        if E.UserInputType == Enum.UserInputType.MouseButton1 then
+            z = true
+            B = E.Position
+            C = x.Position
+            
+            E.Changed:Connect(function()
+                if E.UserInputState == Enum.UserInputState.End then
+                    z = false
+                end
+            end)
+        end
+    end)
+    
+    y.InputChanged:Connect(function(E)
+        if E.UserInputType == Enum.UserInputType.MouseMovement then
+            A = E
+        end
+    end)
+    
+    f.InputChanged:Connect(function(E)
+        if E == A and z then
+            D(E)
+        end
+    end)
+end
+
+g.Parent = c
+
+local G = 20
+local H = 20
+local I = 20
+local J = false
+local K = 0
+local L = {}
+local M = "right"
+local N = "right"
+local O = nil
+local P = {}
+local Q = "normal"
+local R = {
+    ["ez"] = {speed = 0.15, obstacles = 3},
+    ["normal"] = {speed = 0.1, obstacles = 6}, 
+    ["hard brrr"] = {speed = 0.06, obstacles = 10},
+    ["∑"] = {speed = 0.04, obstacles = 15}
+}
+local S = Color3.new(0.2, 0.8, 0.2)
+local T = Color3.new(0.3, 0.9, 0.3)
+local U = Color3.new(1, 0.2, 0.2)
+local V = Color3.new(0.4, 0.4, 0.6)
+local W = Color3.new(0.08, 0.08, 0.08)
+local X = {}
+for Y = 1, H do
+    X[Y] = {}
+    for Z = 1, I do
+        local a0 = Instance.new("Frame")
+        a0.Size = UDim2.new(0, G - 1, 0, G - 1)
+        a0.Position = UDim2.new(0, (Y-1) * G, 0, (Z-1) * G)
+        a0.BackgroundColor3 = W
+        a0.BorderSizePixel = 0
+        a0.ZIndex = 5
+        a0.Parent = l
+        X[Y][Z] = a0
+    end
+end
+local function a1()
+    m.Text = "score " .. K
+    
+    for a2 = 1, H do
+        for a3 = 1, I do
+            X[a2][a3].BackgroundColor3 = W
+        end
+    end
+    
+    for a4, a5 in pairs(P) do
+        if a5.x >= 1 and a5.x <= H and a5.y >= 1 and a5.y <= I then
+            X[a5.x][a5.y].BackgroundColor3 = V
+        end
+    end
+    
+    for a6, a7 in ipairs(L) do
+        if a7.x >= 1 and a7.x <= H and a7.y >= 1 and a7.y <= I then
+            if a6 == 1 then
+                X[a7.x][a7.y].BackgroundColor3 = S
+            else
+                X[a7.x][a7.y].BackgroundColor3 = T
+            end
+        end
+    end
+    
+    if O then
+        X[O.x][O.y].BackgroundColor3 = U
+    end
+end
+local function a8()
+    P = {}
+    local a9 = R[Q].obstacles
+    
+    for aa = 1, a9 do
+        local ab
+        local ac = false
+        
+        while not ac do
+            ab = {
+                x = math.random(2, H - 1),
+                y = math.random(2, I - 1)
+            }
+            
+            ac = true
+            
+            for ad, ae in ipairs(L) do
+                if ae.x == ab.x and ae.y == ab.y then
+                    ac = false
+                    break
+                end
+            end
+            
+            if O and O.x == ab.x and O.y == ab.y then
+                ac = false
+            end
+            
+            for af, ag in pairs(P) do
+                if math.abs(ag.x - ab.x) + math.abs(ag.y - ab.y) < 3 then
+                    ac = false
+                    break
+                end
+            end
+        end
+        
+        table.insert(P, ab)
+    end
+end
+local function ah()
+    local ai = false
+    local aj
+    
+    while not ai do
+        aj = {
+            x = math.random(1, H),
+            y = math.random(1, I)
+        }
+        
+        ai = true
+        
+        for ak, al in ipairs(L) do
+            if al.x == aj.x and al.y == aj.y then
+                ai = false
+                break
+            end
+        end
+        
+        for am, an in pairs(P) do
+            if an.x == aj.x and an.y == aj.y then
+                ai = false
+                break
+            end
+        end
+    end
+    
+    O = aj
+end
+local function ao(ap)
+    if ap.x < 1 or ap.x > H or ap.y < 1 or ap.y > I then
+        return true
+    end
+    
+    for aq = 2, #L do
+        if L[aq].x == ap.x and L[aq].y == ap.y then
+            return true
+        end
+    end
+    
+    for ar, as in pairs(P) do
+        if as.x == ap.x and as.y == ap.y then
+            return true
+        end
+    end
+    
+    return false
+end
+local function at()
+    M = N
+    
+    local au = {x = L[1].x, y = L[1].y}
+    
+    if M == "up" then
+        au.y = au.y - 1
+    elseif M == "down" then
+        au.y = au.y + 1
+    elseif M == "left" then
+        au.x = au.x - 1
+    elseif M == "right" then
+        au.x = au.x + 1
+    end
+    
+    if ao(au) then
+        J = false
+        v.Text = "skill issue\nscore " .. K
+        v.Visible = true
+        return
+    end
+    
+    table.insert(L, 1, au)
+    
+    if O and au.x == O.x and au.y == O.y then
+        K = K + 1
+        ah()
+    else
+        table.remove(L)
+    end
+end
+local function av()
+    J = true
+    v.Visible = false
+    K = 0
+    
+    L = {
+        {x = 5, y = 10},
+        {x = 4, y = 10},
+        {x = 3, y = 10}
+    }
+    
+    M = "right"
+    N = "right"
+    
+    a8()
+    ah()
+    a1()
+end
+f.InputBegan:Connect(function(aw)
+    if not J then return end
+    
+    if aw.KeyCode == Enum.KeyCode.W or aw.KeyCode == Enum.KeyCode.Up then
+        if M ~= "down" then
+            N = "up"
+        end
+    elseif aw.KeyCode == Enum.KeyCode.S or aw.KeyCode == Enum.KeyCode.Down then
+        if M ~= "up" then
+            N = "down"
+        end
+    elseif aw.KeyCode == Enum.KeyCode.A or aw.KeyCode == Enum.KeyCode.Left then
+        if M ~= "right" then
+            N = "left"
+        end
+    elseif aw.KeyCode == Enum.KeyCode.D or aw.KeyCode == Enum.KeyCode.Right then
+        if M ~= "left" then
+            N = "right"
+        end
+    end
+end)
+local ax = tick()
+d.Heartbeat:Connect(function()
+    if not J then return end
+    
+    local ay = tick()
+    local az = R[Q].speed
+    
+    if ay - ax >= az then
+        at()
+        a1()
+        ax = ay
+    end
+end)
+p.MouseButton1Click:Connect(function()
+    local aA = {"ez", "normal", "hard brrr", "∑"}
+    local aB
+    for aD, aE in pairs(aA) do
+        if aE == Q then
+            aB = aD
+            break
+        end
+    end
+    aB = aB or 2
+    local aC = (aB % #aA) + 1
+    Q = aA[aC]
+    p.Text = Q
+    
+    if J then
+        a8()
+        a1()
+    end
+end)
+t.MouseButton1Click:Connect(function()
+    av()
+end)
+
+w(h, j)
+
+av()
+
+print("loded")
+
+q.MouseButton1Click:Connect(function()
+    g:Destroy()
+end)
